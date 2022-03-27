@@ -8,6 +8,9 @@ class Product(models.Model):
     category = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=17, decimal_places=2)
 
+    def __str__(self):
+        return '{}'.format(self.name)
+
 
 class Order(models.Model):
     objects = OrderManager()
@@ -16,6 +19,9 @@ class Order(models.Model):
     # reference to objects in a different domain
     operator_id = models.IntegerField()
     customer_id = models.IntegerField()
+
+    def __str__(self):
+        return '{}'.format(self.number)
 
 
 class OrderItem(models.Model):
@@ -37,3 +43,6 @@ class OrderItem(models.Model):
         null=True,
         blank=True
     )
+
+    def __str__(self):
+        return '{}_{}'.format(self.order, self.product)
