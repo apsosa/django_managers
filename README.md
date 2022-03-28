@@ -10,11 +10,8 @@ Fields implement the ValueObject pattern, therefore, they have no meaning by its
 Relational fields are ForeignKey field, OneToOne field, and ManyToMany field. Those implement the ForeignKey mapping, Dependent mapping, and Association table mapping patterns respectively. They are responsible for defining the Metadata needed for the Data mapping that will be done by Query Sets.
 
 - Manager — According to Django documentation, a manager is an interface through which database query operations are provided to models.Also:
-  Managers are accessible only via model classes, rather than from model instances, to enforce a separation between “table-level” operations and “record-level” operations.The Manager is the main source of QuerySets for a model. For example, Blog.objects.all() returns a QuerySet that contains all Blog objects in the database.
-
-It implements partially the Table Gateway pattern. However, Managers delegate performing the queries to Query Sets.
-I always see Managers more like a “Facade” for the complexity of the operations on your data storage. Although, another approach I like is to use them as Repositories in some projects (I will talk more about that in another post).
-Whenever you need to perform a query, insert data, or manipulate existing data, the manager can be powerful for simplifying this process for external usage on your application.
+  Managers are accessible only via model classes, rather than from model instances, to enforce a separation between “table-level” operations and “record-level” operations.The Manager is the main source of QuerySets for a model. For example, Blog.objects.all() returns a QuerySet that contains all Blog objects in the database.It implements partially the Table Gateway pattern. However, Managers delegate performing the queries to Query Sets.
+I always see Managers more like a “Facade” for the complexity of the operations on your data storage. Although, another approach I like is to use them as Repositories in some projects (I will talk more about that in another post).Whenever you need to perform a query, insert data, or manipulate existing data, the manager can be powerful for simplifying this process for external usage on your application.
 
 - Query Sets — Query sets are the final frontier between your domain and your data storage. They implement the Query Object pattern (named by Martin Fowler). Query sets allow you to build queries with python objects and use different backends to convert those queries to the real SQL query that will be performed in a data storage.
 Whenever you need to customize the way the SQL query will be built or its response, Query Sets are the right place to do it.
